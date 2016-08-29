@@ -1,5 +1,6 @@
 package br.com.universidade.business;
 
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -59,9 +60,46 @@ public class ProfessorBO {
 		professorDAO.adicionaProfessor(professor);
 		
 		return "sucesso";
+			
 		
+	}
+	@RequestMapping("/editaProfessor")
+	public void editaProfessor(Professor professor) {
+		System.out.println("Digite o id do Professor a ser editado:");
+		Long idProfessor = Long.parseLong(entrada.nextLine()); 
+		professor = professorDAO.buscaProfessor(idProfessor);
 		
+		System.out.println("Digite o nome do professor:");
+		professor.setNome(entrada.nextLine());
 		
+		System.out.println("Digite a matrícula do professor:");
+		Matricula matricula = new Matricula();
+		Long idMatricula = professor.getMatricula().getId();
+		matricula = matriculaDAO.buscaMatricula(idMatricula);
+		matricula.setDescricao(Long.parseLong(entrada.nextLine()));
+		professor.setMatricula(matricula);
+		
+		System.out.println("Digite o id do curso que o professor irá lecionar:");
+		Long id = Long.parseLong(entrada.nextLine());
+		Curso curso = cursoDAO.buscarCurso(id);
+		professor.setCurso(curso);
+		
+		System.out.println("Digite o email do professor:");
+		professor.setEmail(entrada.nextLine());
+		
+		System.out.println("Digite o telefone do professor:");
+		professor.setTelefone(Long.parseLong(entrada.nextLine()));
+		
+		entrada.close();
+		
+		matriculaDAO.editaMatricula(matricula);
+		professorDAO.editaProfessor(professor);
+		
+	}
+	
+	public List<Professor> exibeProfessores() {
+		List<Professor> professores = professorDAO.listaProfessores();
+		return professores;
 	}
 
 }

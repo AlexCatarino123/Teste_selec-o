@@ -25,6 +25,13 @@
 		<url-pattern>/editaCurso</url-pattern>
 		<url-pattern>/salvaProfessor</url-pattern>
 		<url-pattern>/listaCurso</url-pattern>
+		<url-pattern>/adicionaTurma</url-pattern>
+		<url-pattern>/editaTurma</url-pattern>
+		<url-pattern>/listaProfessores</url-pattern>
+		<url-pattern>/editaProfessor</url-pattern>
+		<url-pattern>/salvaAluno</url-pattern>
+		<url-pattern>/turmas</url-pattern>
+		
 	</servlet-mapping>
 
 	<display-name>jersey-tutorial</display-name>

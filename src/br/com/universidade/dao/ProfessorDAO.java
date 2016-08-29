@@ -1,7 +1,10 @@
 package br.com.universidade.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Repository;
@@ -28,6 +31,12 @@ public class ProfessorDAO {
 	
 	public void editaProfessor(Professor professor) {
 		entityManager.merge(professor);
+	}
+	
+	public List<Professor> listaProfessores() {
+		String jpql = "SELECT x FROM Professor x";
+		TypedQuery<Professor> consulta = entityManager.createQuery(jpql,Professor.class);
+		return consulta.getResultList();
 	}
 
 }
