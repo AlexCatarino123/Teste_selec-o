@@ -1,15 +1,19 @@
 package br.com.universidade.business;
 
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.universidade.dao.CursoDAO;
 import br.com.universidade.entity.Curso;
 
 @Controller
+@ComponentScan("br.com.universidade.business")
 public class CursoBO {
 	
 	Scanner entrada = new Scanner(System.in);
@@ -17,16 +21,12 @@ public class CursoBO {
 	@Autowired
 	private CursoDAO cursoDAO;
 	
-	@RequestMapping("/salvaCurso")
-	public String salvarCurso(Curso curso) {
-		System.out.println("Executando Lógica...");
-		System.out.println("Digite o nome do curso:");
-		curso.setNome(entrada.nextLine());
-		entrada.close();
+	
+	public void salvarCurso(Curso curso) {
 		cursoDAO.adicionaCurso(curso);
-		return "sucesso";
 		
 	}
+	
 	@RequestMapping("/editaCurso")
 	public String editaCurso() {
 		System.out.println("Digite o id do Curso a ser editado:");
@@ -37,6 +37,14 @@ public class CursoBO {
 		cursoDAO.editarCurso(curso);
 		entrada.close();
 		return "sucesso";
+		
+	}
+	
+	public List<Curso> exibeCursos() {
+		List<Curso> cursos = cursoDAO.listaCurso();
+		return cursos;
+	    
+	    
 		
 	}
 

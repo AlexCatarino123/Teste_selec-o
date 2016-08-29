@@ -4,7 +4,10 @@ import java.util.Scanner;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.universidade.dao.CursoDAO;
@@ -15,6 +18,7 @@ import br.com.universidade.entity.Matricula;
 import br.com.universidade.entity.Professor;
 
 @Controller
+@ComponentScan("br.com.universidade.business")
 public class ProfessorBO {
 	
 	@Autowired

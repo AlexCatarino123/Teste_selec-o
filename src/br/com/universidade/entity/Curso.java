@@ -3,8 +3,10 @@ package br.com.universidade.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement
 public class Curso {
 	@Id
 	@GeneratedValue
